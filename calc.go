@@ -16,7 +16,7 @@ func Processing(expr string) string {
 }
 
 func main() {
-	fmt.Println(roman.ConvertRoman("XXIX"), roman.ConvertRoman("XLIX"))
+	// fmt.Println(roman.ConvertRoman("XXIX"), roman.ConvertRoman("XLIX"))
 	myscanner := bufio.NewScanner(os.Stdin)
 	myscanner.Scan()
 	inputStr := myscanner.Text()
