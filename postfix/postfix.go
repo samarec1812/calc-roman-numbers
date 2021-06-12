@@ -1,8 +1,8 @@
 package postfix
 
 import (
-	"github.com/samarec1812/calc-roman-numbers/check"
 	"fmt"
+	"github.com/samarec1812/calc-roman-numbers/check"
 	"math"
 	"strconv"
 	"strings"
@@ -31,7 +31,7 @@ func PerformToPostfix(expr []string) (string, []string) {
 	}
 	operation := make([]string, 0, 0)
 
-	fmt.Println(expr)
+	// fmt.Println(expr)
 	for i := 0; i < len(expr); i++ {
 
 		if check.IsNumber(expr[i]) {
@@ -110,17 +110,15 @@ func calculate(operation string, a int64, b int64) (int64, error) {
 		}
 		return a / b, nil
 	}
-	fmt.Println("Error: operation is not find")
+	// fmt.Println("Error: operation is not find")
 	return 0, fmt.Errorf("Error: operation is not find")
 }
 
 func Evalation(ToPostfix []string) (int64, error) {
 	result := make([]int64, 0, 0)
-	// Dict := FillDict(strings.Join(ToPostfix, ""))
 
-	//  DictNumber := make(map[float64]float64)
 	for index := 0; index < len(ToPostfix); index++ {
-		fmt.Println(result, ToPostfix)
+		//  fmt.Println(result, ToPostfix)
 		/* else if ToPostfix[index] == "!" {
 			a := result[len(result)-1]
 			result = result[:len(result)-1]
@@ -136,7 +134,7 @@ func Evalation(ToPostfix []string) (int64, error) {
 				return 0, err
 			}
 			result = append(result, c)
-			fmt.Println("calculate: ", result, c)
+		//	fmt.Println("calculate: ", result, c)
 			/*
 				else if ToPostfix[index] == "-" && index != len(ToPostfix)-1 {
 					fmt.Println(ToPostfix[index], index)

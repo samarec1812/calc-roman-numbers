@@ -1,8 +1,8 @@
 package check
 
 import (
-	"github.com/samarec1812/calc-roman-numbers/roman"
 	"fmt"
+	"github.com/samarec1812/calc-roman-numbers/roman"
 	"strconv"
 )
 
@@ -54,7 +54,7 @@ func CorrectString(expr string) bool {
 		case '(':
 			balance += 1
 			if !IsOperation(expr[i-1]) && expr[i-1] == ')' {
-				fmt.Println("1 error")
+				fmt.Println("error 1")
 				return false
 			}
 			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
@@ -65,54 +65,54 @@ func CorrectString(expr string) bool {
 			balance--
 
 			if (!IsRomeNumber(expr[i-1])) && (expr[i-1] == '(' || IsOperation(expr[i-1])) {
-				fmt.Println("Error 2.2")
+				fmt.Println("error 2.2")
 				return false
 			}
 			if !IsOperation(expr[i+1]) && expr[i+1] == '(' {
-				fmt.Println("Error 2.3")
+				fmt.Println("error 2.3")
 				return false
 			}
 		case '+':
 			if !IsRomeNumber(expr[i-1]) && (expr[i-1] == '(' || IsOperation(expr[i-1])) {
-				fmt.Println("Error 3")
+				fmt.Println("error 3")
 				return false
 			}
 			if !IsRomeNumber(expr[i+1]) && (expr[i+1] == ')' || IsOperation(expr[i+1])) {
-				fmt.Println("Error 4")
+				fmt.Println("error 4")
 				return false
 			}
 		case '-':
 			if IsOperation(expr[i-1]) {
 				// !IsLetter(expr[i-1]) && !IsDigit(expr[i-1]) && expr[i-1] != '('  {
-				fmt.Println("Error 5")
+				fmt.Println("error 5")
 				return false
 			}
 			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
-				fmt.Println("Error 6")
+				fmt.Println("error 6")
 				return false
 			}
 		case '*':
 			if !IsRomeNumber(expr[i-1]) && expr[i-1] == '(' {
-				fmt.Println("Error 7")
+				fmt.Println("error 7")
 				return false
 			}
 			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
-				fmt.Println("Error 8")
+				fmt.Println("error 8")
 				return false
 			}
 		case '/':
-			if !IsRomeNumber(expr[i-1]) && expr[i-1] == '(' {
-				fmt.Println("Error 9")
+			if !IsRomeNumber(expr[i-1]) && (expr[i-1] == '(' || IsOperation(expr[i-1])) {
+				fmt.Println("error 9")
 				return false
 			}
-			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
-				fmt.Println("Error 10")
+			if !IsRomeNumber(expr[i+1]) && (expr[i+1] == ')' || IsOperation(expr[i+1])) {
+				fmt.Println("error 10")
 				return false
 			}
 		}
 	}
 	if !IsRomeNumber(expr[len(expr)-1]) && expr[len(expr)-1] != ')' {
-		fmt.Println("Error 11 " + string(expr[len(expr)-1]))
+		fmt.Println("error 11 " + string(expr[len(expr)-1]))
 		return false
 	}
 
@@ -120,7 +120,7 @@ func CorrectString(expr string) bool {
 		balance -= 1
 	}
 	if balance != 0 {
-		fmt.Println("Error 12")
+		fmt.Println("error 12")
 		return false
 	}
 	return true

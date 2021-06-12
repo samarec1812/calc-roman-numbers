@@ -1,7 +1,6 @@
 package roman
 
 import (
-	"fmt"
 	"regexp"
 	"sort"
 	"strconv"
@@ -63,7 +62,7 @@ func ConvertRoman(roman string) string {
 }
 
 func ConvertArabic(num int64) string {
-	fmt.Println(num)
+	// fmt.Println(num)
 	sort.Slice(StructNum, func(i, j int) bool {
 
 		return StructNum[i].numInt > StructNum[j].numInt
@@ -76,7 +75,7 @@ func ConvertArabic(num int64) string {
 	} else if num == 0 {
 		return "Z"
 	}
-	fmt.Println(num)
+	// fmt.Println(num)
 	for _, value := range StructNum {
 		for num >= value.numInt {
 			roman += value.roman
