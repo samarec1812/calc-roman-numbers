@@ -1,7 +1,7 @@
 package check
 
 import (
-	"../roman"
+	"github.com/samarec1812/calc-roman-numbers/roman"
 	"fmt"
 	"strconv"
 )
@@ -49,18 +49,18 @@ func CorrectString(expr string) bool {
 		fmt.Println("error: no equal left and right brackets")
 		return false
 	}
-	for i := 1; i < len(expr) - 1; i++ {
+	for i := 1; i < len(expr)-1; i++ {
 		switch expr[i] {
 		case '(':
-				balance += 1
-				if !IsOperation(expr[i-1]) && expr[i-1] == ')' {
-					fmt.Println("1 error")
-					return false
-				}
-				if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
-					fmt.Println("error: 1.1")
-					return false
-					}
+			balance += 1
+			if !IsOperation(expr[i-1]) && expr[i-1] == ')' {
+				fmt.Println("1 error")
+				return false
+			}
+			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
+				fmt.Println("error: 1.1")
+				return false
+			}
 		case ')':
 			balance--
 
@@ -77,7 +77,7 @@ func CorrectString(expr string) bool {
 				fmt.Println("Error 3")
 				return false
 			}
-			if !IsRomeNumber(expr[i+1]) && (expr[i+1] == ')' || IsOperation(expr[i+1]))  {
+			if !IsRomeNumber(expr[i+1]) && (expr[i+1] == ')' || IsOperation(expr[i+1])) {
 				fmt.Println("Error 4")
 				return false
 			}
@@ -87,7 +87,7 @@ func CorrectString(expr string) bool {
 				fmt.Println("Error 5")
 				return false
 			}
-			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')'{
+			if !IsRomeNumber(expr[i+1]) && expr[i+1] == ')' {
 				fmt.Println("Error 6")
 				return false
 			}
@@ -111,12 +111,12 @@ func CorrectString(expr string) bool {
 			}
 		}
 	}
-	if !IsRomeNumber(expr[len(expr) - 1]) && expr[len(expr)-1] != ')' {
-		fmt.Println("Error 11 " + string(expr[len(expr) -1]))
+	if !IsRomeNumber(expr[len(expr)-1]) && expr[len(expr)-1] != ')' {
+		fmt.Println("Error 11 " + string(expr[len(expr)-1]))
 		return false
 	}
 
-	if expr[len(expr) - 1] == ')' {
+	if expr[len(expr)-1] == ')' {
 		balance -= 1
 	}
 	if balance != 0 {
@@ -134,11 +134,11 @@ func IsRomeNumber(ch byte) bool {
 }
 
 func IsNumber(s string) bool {
-	 _, err := strconv.Atoi(s)
-	 if err != nil {
-	 	return false
-	 }
-	 return true
+	_, err := strconv.Atoi(s)
+	if err != nil {
+		return false
+	}
+	return true
 }
 
 func IsOperationS(s string) bool {
@@ -154,14 +154,13 @@ func CreateToken(inputStr string) []string {
 	romeStr := ""
 	for idx, value := range inputStr {
 
-		if value == '(' || value == ')' || value == '+' || value == '-' || value == '*' || value == '/' || idx == len(inputStr) - 1  {
+		if value == '(' || value == ')' || value == '+' || value == '-' || value == '*' || value == '/' || idx == len(inputStr)-1 {
 			if romeStr != "" {
 				tokenStr = append(tokenStr, romeStr)
 			}
 
 			tokenStr = append(tokenStr, string(value))
 			romeStr = ""
-
 
 		} else {
 			romeStr += string(value)
@@ -186,12 +185,16 @@ func CorrectBracket(s string) bool {
 		if s[i] == '(' {
 			stack = append(stack, s[i])
 		}
-		if len(stack) == 0 { return false }
+		if len(stack) == 0 {
+			return false
+		}
 		if s[i] == ')' {
-			stack = stack[:len(stack) - 1]
+			stack = stack[:len(stack)-1]
 		}
 	}
-	if len(stack) == 0 { return true }
+	if len(stack) == 0 {
+		return true
+	}
 	return false
 }
 

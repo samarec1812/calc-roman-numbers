@@ -1,11 +1,11 @@
 package main
 
 import (
-	"./check"
-	"./postfix"
-	"./roman"
 	"bufio"
 	"fmt"
+	"github.com/samarec1812/calc-roman-numbers/check"
+	"github.com/samarec1812/calc-roman-numbers/postfix"
+	"github.com/samarec1812/calc-roman-numbers/roman"
 	"os"
 	"strings"
 )
@@ -16,15 +16,14 @@ func Processing(expr string) string {
 }
 
 func main() {
-	// fmt.Println(roman.ConvertRoman("XXIX"), roman.ConvertRoman("XLIX"))
+
 	myscanner := bufio.NewScanner(os.Stdin)
 	myscanner.Scan()
 	inputStr := myscanner.Text()
 
 	inputStr = Processing(inputStr)
-	fmt.Println("_________________")
-	fmt.Println(inputStr)
 
+	fmt.Println(inputStr)
 
 	if check.CorrectSymbolInString(inputStr) {
 		fmt.Println(check.CorrectString(inputStr))
@@ -58,12 +57,9 @@ func main() {
 
 	}
 
-
 	/*for _, val := range tokens {
 		fmt.Println(val)
 	}*/
-
-
 
 	// fmt.Println(roman.IsRoman(inputStr))
 }

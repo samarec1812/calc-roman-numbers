@@ -1,7 +1,7 @@
 package postfix
 
 import (
-	"../check"
+	"github.com/samarec1812/calc-roman-numbers/check"
 	"fmt"
 	"math"
 	"strconv"
@@ -48,7 +48,7 @@ func PerformToPostfix(expr []string) (string, []string) {
 			if len(operation) == 0 {
 				operation = append(operation, expr[i])
 
-			} else if PriorityOperation(operation[len(operation)-1]) >= PriorityOperation(expr[i])  {
+			} else if PriorityOperation(operation[len(operation)-1]) >= PriorityOperation(expr[i]) {
 				for len(operation) > 0 && (PriorityOperation(operation[len(operation)-1]) >= PriorityOperation(expr[i])) {
 					chInStr := string(operation[len(operation)-1])
 					operation = operation[:len(operation)-1]
@@ -63,7 +63,7 @@ func PerformToPostfix(expr []string) (string, []string) {
 
 		} else if expr[i] == ")" {
 
-			for operation[len(operation) - 1] != "(" {
+			for operation[len(operation)-1] != "(" {
 				chInStr := operation[len(operation)-1]
 				operation = operation[:len(operation)-1]
 				ToPostfix = append(ToPostfix, chInStr)
@@ -80,25 +80,24 @@ func PerformToPostfix(expr []string) (string, []string) {
 	return strToPostfix, ToPostfix
 }
 
-
 func calculate(operation string, a int64, b int64) (int64, error) {
 
 	if operation == "+" {
-		if a + b < math.MaxInt64 {
+		if a+b < math.MaxInt64 {
 			return a + b, nil
 		} else {
 			return 0, fmt.Errorf("error: overflow int number")
 		}
 	}
 	if operation == "-" {
-		if a - b > math.MinInt64 {
+		if a-b > math.MinInt64 {
 			return a - b, nil
 		} else {
 			return 0, fmt.Errorf("error: overflow int number")
 		}
 	}
 	if operation == "*" {
-		if a * b < math.MaxInt64 {
+		if a*b < math.MaxInt64 {
 			return a * b, nil
 		} else {
 			return 0, fmt.Errorf("error: overflow int number")
@@ -115,8 +114,6 @@ func calculate(operation string, a int64, b int64) (int64, error) {
 	return 0, fmt.Errorf("Error: operation is not find")
 }
 
-
-
 func Evalation(ToPostfix []string) (int64, error) {
 	result := make([]int64, 0, 0)
 	// Dict := FillDict(strings.Join(ToPostfix, ""))
@@ -130,7 +127,7 @@ func Evalation(ToPostfix []string) (int64, error) {
 			result = append(result, -a)
 		} else*/
 		if ToPostfix[index] == "+" ||
-			ToPostfix[index] == "*" || ToPostfix[index] == "/" || (ToPostfix[index] == "-" ) {
+			ToPostfix[index] == "*" || ToPostfix[index] == "/" || (ToPostfix[index] == "-") {
 
 			a, b := result[len(result)-1], result[len(result)-2]
 			result = result[:len(result)-2]
@@ -140,20 +137,20 @@ func Evalation(ToPostfix []string) (int64, error) {
 			}
 			result = append(result, c)
 			fmt.Println("calculate: ", result, c)
-		 /*
-			else if ToPostfix[index] == "-" && index != len(ToPostfix)-1 {
-				fmt.Println(ToPostfix[index], index)
+			/*
+				else if ToPostfix[index] == "-" && index != len(ToPostfix)-1 {
+					fmt.Println(ToPostfix[index], index)
 
-				// if check.IsNumber(ToPostfix[index+1]) && (index == 0) { /* || (index > 0 && (check.IsDigit2(ToPostfix[index-1])||
-				//	check.IsLetter2(ToPostfix[index-1]) && check.IsOperation2(ToPostfix[index-2])))) {
-					number, _ := strconv.ParseInt(ToPostfix[index+1], 10, 64)
-					result = append(result, -number)
-					index += 1
-				}
+					// if check.IsNumber(ToPostfix[index+1]) && (index == 0) { /* || (index > 0 && (check.IsDigit2(ToPostfix[index-1])||
+					//	check.IsLetter2(ToPostfix[index-1]) && check.IsOperation2(ToPostfix[index-2])))) {
+						number, _ := strconv.ParseInt(ToPostfix[index+1], 10, 64)
+						result = append(result, -number)
+						index += 1
+					}
 
-			}*/
-	    } else {
-			num, err := strconv.ParseInt(ToPostfix[index], 10,  64)
+				}*/
+		} else {
+			num, err := strconv.ParseInt(ToPostfix[index], 10, 64)
 			if err != nil {
 				fmt.Println(err)
 			}
