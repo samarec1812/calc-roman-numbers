@@ -16,6 +16,7 @@ func Processing(expr string) string {
 }
 
 func main() {
+
 	for {
 		myscanner := bufio.NewScanner(os.Stdin)
 		myscanner.Scan()

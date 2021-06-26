@@ -58,11 +58,12 @@ func ConvertRoman(roman string) string {
 		}
 	}
 	result += Dict[string(roman[len(roman)-1])]
+
 	return strconv.Itoa(result)
 }
 
 func ConvertArabic(num int64) string {
-	// fmt.Println(num)
+
 	sort.Slice(StructNum, func(i, j int) bool {
 
 		return StructNum[i].numInt > StructNum[j].numInt

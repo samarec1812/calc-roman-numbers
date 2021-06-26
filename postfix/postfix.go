@@ -108,7 +108,10 @@ func calculate(operation string, a int64, b int64) (int64, error) {
 
 			return 0, fmt.Errorf("Error: Division by zero")
 		}
-		return a / b, nil
+		//} else if a < 0 || b < 0 {
+		//	return int64(math.Floor(float64(a / b))-1), nil
+		//}
+		return int64(math.Floor(float64(a) / float64(b))), nil
 	}
 	// fmt.Println("Error: operation is not find")
 	return 0, fmt.Errorf("Error: operation is not find")
@@ -134,7 +137,7 @@ func Evalation(ToPostfix []string) (int64, error) {
 				return 0, err
 			}
 			result = append(result, c)
-		//	fmt.Println("calculate: ", result, c)
+			// fmt.Println("calculate: ", result, c)
 			/*
 				else if ToPostfix[index] == "-" && index != len(ToPostfix)-1 {
 					fmt.Println(ToPostfix[index], index)

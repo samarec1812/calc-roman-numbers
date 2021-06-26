@@ -155,18 +155,24 @@ func CreateToken(inputStr string) []string {
 	for idx, value := range inputStr {
 
 		if value == '(' || value == ')' || value == '+' || value == '-' || value == '*' || value == '/' || idx == len(inputStr)-1 {
-			if romeStr != "" {
+
+			if romeStr != "" &&  idx == len(inputStr)-1  {
+				romeStr += string(value)
+				tokenStr = append(tokenStr, romeStr)
+				continue
+			} else if romeStr != "" &&  idx != len(inputStr)-1  {
+
 				tokenStr = append(tokenStr, romeStr)
 			}
-
-			tokenStr = append(tokenStr, string(value))
-			romeStr = ""
+				tokenStr = append(tokenStr, string(value))
+				romeStr = ""
 
 		} else {
 			romeStr += string(value)
 		}
 
 	}
+
 	return tokenStr
 }
 func FormBracketStr(s string) string {
